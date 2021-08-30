@@ -21,7 +21,7 @@ class Venda(models.Model):
 
 
     def __str__(self):
-        return str(self.dia)
+        return str(self.dia_da_venda)
 
     def save(self, *args, **kwargs):
         self.venda_total_dia = (self.venda_dinheiro + self.venda_cartao)
@@ -31,6 +31,7 @@ class Venda(models.Model):
 
         return super(Venda, self).save(*args, **kwargs)
 
+    #vendas = Venda.objects.filter(data_venda=data_inicial, data_venda=data_final)
     # def soma_mensal_dinheiro(self):
     #     tot = self.venda_set.all().aggregate(ven_din=Sum('venda_dinheiro'))
     #     self.venda_dinheiro_total = tot
@@ -42,6 +43,8 @@ class Venda(models.Model):
     # Venda.objects.all().aggregate(v_d=Sum('venda_dinheiro'))
     #
     # {'v_d': Decimal('151')}
+
+
 
 
     def soma_mensal_cartao(self):

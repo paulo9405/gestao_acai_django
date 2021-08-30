@@ -3,7 +3,7 @@ from.models import Venda
 
 class VendaAdmin(admin.ModelAdmin):
     fields = (
-        'dia',
+        'dia_da_venda',
         'quantidade_entregas',
         'venda_dinheiro',
         'venda_cartao',
