@@ -12,17 +12,13 @@ class VendaAdmin(admin.ModelAdmin):
         'venda_total_dia',
         'despesa_do_dia',
         'lucro_liquido_dia',
-        'venda_dinheiro_total',
-        'venda_cartao_total',
     )
 
     readonly_fields = (
         'venda_total_dia',
         'despesa_do_dia',
         'lucro_liquido_dia',
-        'venda_dinheiro_total',
-        'venda_cartao_total',
-    ) #apenas leitura
+    )
 
 
 
