@@ -1,6 +1,6 @@
 from django.db import models
-from django.db.models import Aggregate, Sum, FloatField
 from .managers import VendaManager
+
 
 class Venda(models.Model):
     dia_da_venda = models.DateField()
@@ -27,5 +27,3 @@ class Venda(models.Model):
         self.lucro_liquido_dia = (self.venda_total_dia - self.compras - self.despesas)
 
         return super(Venda, self).save(*args, **kwargs)
-
-
