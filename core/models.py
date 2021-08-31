@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Aggregate, Sum, FloatField
+from .managers import VendaManager
 
 class Venda(models.Model):
     dia_da_venda = models.DateField()
@@ -15,48 +16,16 @@ class Venda(models.Model):
     despesa_do_dia = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
     lucro_liquido_dia = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
 
-    venda_dinheiro_total = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
-    venda_cartao_total = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
-
-
+    objects = VendaManager()
 
     def __str__(self):
-        return str(self.dia_da_venda)
+        return str(self.dia_da_venda) +' - '+ str(self.venda_dinheiro) +' - '+ str(self.venda_cartao) +' - '+ str(self.compras) +' - '+ str(self.despesas)
 
     def save(self, *args, **kwargs):
         self.venda_total_dia = (self.venda_dinheiro + self.venda_cartao)
         self.despesa_do_dia = (self.despesas + self.compras)
         self.lucro_liquido_dia = (self.venda_total_dia - self.compras - self.despesas)
-        #self.venda_dinheiro_total = (Venda.objects.all().aggregate(v_d=Sum('venda_dinheiro')))['v_d'] + self.venda_total_dia
 
         return super(Venda, self).save(*args, **kwargs)
-
-    #vendas = Venda.objects.filter(data_venda=data_inicial, data_venda=data_final)
-    # def soma_mensal_dinheiro(self):
-    #     tot = self.venda_set.all().aggregate(ven_din=Sum('venda_dinheiro'))
-    #     self.venda_dinheiro_total = tot
-    #     self.save()
-
-    # from core.models import Venda
-    # from django.db.models import aggregate, Sum
-    #
-    # Venda.objects.all().aggregate(v_d=Sum('venda_dinheiro'))
-    #
-    # {'v_d': Decimal('151')}
-
-
-
-
-    def soma_mensal_cartao(self):
-        pass # 3%
-
-    def soma_mensal_dinheiro_cartao_total(self):
-        pass
-
-    def soma_despesa_total(self):
-        pass
-
-    def soma_mensal_lucro_liquido(self):
-        pass
 
 
