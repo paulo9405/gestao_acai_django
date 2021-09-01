@@ -7,9 +7,9 @@ class Venda(models.Model):
     quantidade_entregas = models.IntegerField()
     venda_dinheiro = models.DecimalField(max_digits=5, decimal_places=2)
     venda_cartao = models.DecimalField(max_digits=5, decimal_places=2)
-    compras = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    compras = models.DecimalField(max_digits=5, decimal_places=2)
     descricao_compras = models.CharField(max_length=200, null=True, blank=True)
-    despesas = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    despesas = models.DecimalField(max_digits=5, decimal_places=2)
     descricao_despesas = models.CharField(max_length=200, null=True, blank=True)
 
     venda_total_dia = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
@@ -19,7 +19,7 @@ class Venda(models.Model):
     objects = VendaManager()
 
     def __str__(self):
-        return str(self.dia_da_venda) +' - '+ str(self.venda_dinheiro) +' - '+ str(self.venda_cartao) +' - '+ str(self.compras) +' - '+ str(self.despesas)
+        return str(self.dia_da_venda)
 
     def save(self, *args, **kwargs):
         self.venda_total_dia = (self.venda_dinheiro + self.venda_cartao)
