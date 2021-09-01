@@ -20,5 +20,14 @@ class VendaAdmin(admin.ModelAdmin):
         'lucro_liquido_dia',
     )
 
-
+    list_display = (
+        'dia_da_venda',
+        'quantidade_entregas',
+        'venda_dinheiro',
+        'venda_cartao',
+        'compras',
+        'descricao_compras',
+        'despesas',
+        'descricao_despesas',
+    )
 admin.site.register(Venda, VendaAdmin)

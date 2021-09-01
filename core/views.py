@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from .models import Venda
-from django.db.models import Sum, F, FloatField, Max, Avg, Min, Count
+from django.views.generic import CreateView, ListView
 
+from .models import Venda
+from .forms import VendaForm
 
 class DashboardView(View):
     def get(self, request):
@@ -17,5 +18,23 @@ class DashboardView(View):
         data['soma_despesa_total'] =Venda.objects.soma_despesa_total()
         data['soma_mensal_lucro_liquido'] =Venda.objects.soma_mensal_lucro_liquido()
 
-
         return render(request, 'core/dashboard.html', data)
+
+
+class VendaCreate(CreateView):
+    model = Venda
+    fields = [
+            'dia_da_venda',
+            'quantidade_entregas',
+            'venda_dinheiro',
+            'venda_cartao',
+            'compras',
+            'descricao_compras',
+            'despesas',
+            'descricao_despesas',
+        ]
+    success_url = '/core/dashboard'
+
+
+class VendaLista(ListView):
+    model = Venda

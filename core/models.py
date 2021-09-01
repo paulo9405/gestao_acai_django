@@ -3,18 +3,18 @@ from .managers import VendaManager
 
 
 class Venda(models.Model):
-    dia_da_venda = models.DateField()
+    dia_da_venda = models.DateField(u'Dia da venda ex: 01/12/2020')
     quantidade_entregas = models.IntegerField()
-    venda_dinheiro = models.DecimalField(max_digits=5, decimal_places=2)
-    venda_cartao = models.DecimalField(max_digits=5, decimal_places=2)
-    compras = models.DecimalField(max_digits=5, decimal_places=2)
+    venda_dinheiro = models.DecimalField(max_digits=7, decimal_places=2)
+    venda_cartao = models.DecimalField(max_digits=7, decimal_places=2)
+    compras = models.DecimalField(max_digits=7, decimal_places=2)
     descricao_compras = models.CharField(max_length=200, null=True, blank=True)
-    despesas = models.DecimalField(max_digits=5, decimal_places=2)
+    despesas = models.DecimalField(max_digits=7, decimal_places=2)
     descricao_despesas = models.CharField(max_length=200, null=True, blank=True)
 
-    venda_total_dia = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
-    despesa_do_dia = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
-    lucro_liquido_dia = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2)
+    venda_total_dia = models.DecimalField(blank=True, default=0, max_digits=7, decimal_places=2)
+    despesa_do_dia = models.DecimalField(blank=True, default=0, max_digits=7, decimal_places=2)
+    lucro_liquido_dia = models.DecimalField(blank=True, default=0, max_digits=7, decimal_places=2)
 
     objects = VendaManager()
 

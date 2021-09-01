@@ -1,16 +1,53 @@
+{% extends "base.html" %}
+{% load bootstrap %}
 
+{% block main %}
+<div class="row">
+    <div class="col-12">
 
-    <h1>Dashboard</h1>
+            </tbody>
+        </table>
+    </div>
 
-    <ul>
-        <li>Media de entregas: {{ quantidade_entregas }} | Media por dia: {{media_entregas}}</li>
-        <li>Venda mensal dinheiro: {{ venda_mensal_dinheiro }}</li>
-        <li>Venda mensal cartao: {{ venda_mensal_cartao }}</li>
-        <li>Soma dinheiro com cartao: {{ soma_venda_dinheiro_cartao }}</li>
-        <li>Despesa mensal: {{ despesa_mensal }}</li>
-        <li>Compra mensal: {{ compras_mensal }}</li>
-        <li>Despesa total: {{ soma_despesa_total }}</li>
-        <li>Lucro Liquido: {{ soma_mensal_lucro_liquido }}</li>
+    <div class="col-12">
+        <br>
+        <h2 class="btn btn-info btn-lg btn-block font-weight-bold">Vendas Total</h2>
+        <table class="table font-weight-bold">
+            <thead class="thead">
+                <tr>
+                <th scope="col">Total de entregas</th>
+                <th scope="col" class="text-primary">Venda dinheiro</th>
+                <th scope="col" class="text-primary">Venda cartao</th>
+                <th scope="col" class="text-primary">Soma dinheiro e cartao</th>
+                <th scope="col" class="text-danger">Despesa </th>
+                <th scope="col" class="text-danger">Compra </th>
+                <th scope="col" class="text-danger">Despesa total</th>
+                <th scope="col" class="text-success">Lucro Liquido</th>
+                </tr>
+            </thead>
+            <tbody>
 
-    </ul>
+                <tr>
+                <td>{{quantidade_entregas}}</td>
+                <td class="text-primary">{{venda_mensal_dinheiro}}</td>
+                <td class="text-primary">{{venda_mensal_cartao}}</td>
+                <td class="text-primary">{{soma_venda_dinheiro_cartao}}</td>
+                <td class="text-danger">{{despesa_mensal}}</td>
+                <td class="text-danger">{{compras_mensal}}</td>
+                <td class="text-danger">{{soma_despesa_total}}</td>
+                <td class="text-success">{{soma_mensal_lucro_liquido}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="{% url 'core_venda_create' %}" class="btn btn-outline-info btn-lg btn-block font-weight-bold">Cadastrar venda do dia</a>
+    </div>
 
+    <div class="col-6">
+        <a href="{% url 'core_venda_lista' %}" class="btn btn-outline-info btn-lg btn-block font-weight-bold">Ir para lista de vendas diarias</a>
+    </div>
+</div>
+{% endblock  %}

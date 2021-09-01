@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+
+{% block main %}
+<div class="row">
+    <div class="col-12">
+        <br>
+        <h2 class="btn btn-info btn-lg btn-block font-weight-bold">Vendas diarias</h2>
+        <table class="table font-weight-bold">
+            <thead class="thead">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Dia</th>
+                <th scope="col">Entregas</th>
+                <th scope="col" class="text-primary">Dinheiro</th>
+                <th scope="col" class="text-primary">Cartão</th>
+                <th scope="col" class="text-danger">Compras</th>
+                <th scope="col" class="text-danger">Despesas</th>
+                <th scope="col" class="text-danger">Despesa do dia</th>
+                <th scope="col" class="text-primary">Venda dinheiro e cartão</th>
+                <th scope="col" class="text-success">Venda Liquida</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venda in object_list %}
+                <tr>
+                <th scope="row">{{venda.id}}</th> <!--venda.somames()-->
+                <td>{{venda.dia_da_venda}}</td>
+                <td >{{venda.quantidade_entregas}}</td>
+                <td class="text-primary">{{venda.venda_dinheiro}}</td>
+                <td class="text-primary">{{venda.venda_cartao}}</td>
+                <td class="text-danger">{{venda.compras}}</td>
+                <td class="text-danger">{{venda.despesas}}</td>
+                <td class="text-danger">{{venda.despesa_do_dia}}</td>
+                <td class="text-primary">{{venda.venda_total_dia}}</td>
+                <td class="text-success">{{venda.lucro_liquido_dia}}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<a href="{% url 'core_dashboard' %}" class="btn btn-outline-info btn-lg btn-block">Voltar para o dashboard</a>
+
+
+
+{% endblock  %}
