@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import View
 from django.views.generic import CreateView, ListView
 
 from .models import Venda
-from .forms import VendaForm
+
 
 class DashboardView(View):
     def get(self, request):
