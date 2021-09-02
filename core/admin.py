@@ -30,4 +30,6 @@ class VendaAdmin(admin.ModelAdmin):
         'despesas',
         'descricao_despesas',
     )
+
+
 admin.site.register(Venda, VendaAdmin)

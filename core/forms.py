@@ -14,5 +14,4 @@ class VendaForm(ModelForm):
             'descricao_compras',
             'despesas',
             'descricao_despesas',
-
         )
