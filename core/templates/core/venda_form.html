@@ -1,18 +1,75 @@
 {% extends "base.html" %}
 {% load bootstrap %}
 
+
+{% block menu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'core_dashboard' %}">Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'core_venda_create' %}">Cadastrar venda</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'core_venda_lista' %}">Lista de vendas</a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block main %}
-<div class="col-6">
-
-<div class="btn btn-info col-12">
+<br>
+<div class="container">
+	<div class="btn btn-info col-12 font-weight-bold">
         <h2> Cadastro de Vendas </h2>
+	</div>
+	<form action="{% url 'core_venda_create' %}" method="POST">
+		<br>
+		{% csrf_token %}
+		<div class="form-row font-weight-bold">
+			<div class="col-md-6 mb-3">
+				<label for="id_dia_da_venda">Dia da venda ex: 01/12/2010</label>
+				<input type="text" name="dia_da_venda" class="form-control" id="validationDefault03" placeholder="Dia da venda" required>
+			</div>
+			
+			<div class="col-md-6 mb-3 font-weight-bold">
+				<label for="id_quantidade_entregas">Entragas</label>
+				<input type="text" name="quantidade_entregas" class="form-control" id="validationDefault03" placeholder="Entragas" required>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-md-6 mb-3 font-weight-bold">
+				<label for="id_venda_dinheiro">Dinheiro</label>
+				<input type="text" name="venda_dinheiro" class="form-control" id="validationDefault03" placeholder="Dinheiro" required>
+			</div>
+			<div class="col-md-6 mb-3 font-weight-bold">
+				<label for="id_venda_cartao">Cartão</label>
+				<input type="text" name="venda_cartao" class="form-control" id="validationDefault03" placeholder="Cartão" required>
+			</div>
+		</div>
+		<div class="form-row font-weight-bold">
+			<div class="col-md-6 mb-3">
+				<label for="id_compras">Compras</label>
+				<input type="text" name="compras" class="form-control" id="validationDefault03" placeholder="Compras" required>
+			</div>
+			<div class="col-md-6 mb-3 font-weight-bold">
+				<label for="id_descricao_compras">Descrição</label>
+				<input type="text" name="descricao_compras" class="form-control" id="validationDefault03" placeholder="Descrição de compras" required>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col-md-6 mb-3 font-weight-bold">
+				<label for="id_despesas">Despesas</label>
+				<input type="text" name="despesas" class="form-control" id="validationDefault03" placeholder="Despesas" required>
+			</div>
+			<div class="col-md-6 mb-3 font-weight-bold">
+				<label for="id_descricao_despesas">Descrição</label>
+				<input type="text" name="descricao_despesas" class="form-control" id="validationDefault03" placeholder="Descrição de despesas" required>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary font-weight-bold">Cadastrar Venda</button>
+	</form>
+
 </div>
-        <form action="{% url 'core_venda_create' %}" method="POST">
-        {% csrf_token %}
-
-        {{ form|bootstrap }}
-
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
 {% endblock  %}
-</div>

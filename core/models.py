@@ -3,7 +3,7 @@ from .managers import VendaManager
 
 
 class Venda(models.Model):
-    dia_da_venda = models.DateField(u'Dia da venda ex: 01/12/2020')
+    dia_da_venda = models.DateField()
     quantidade_entregas = models.IntegerField()
     venda_dinheiro = models.DecimalField(max_digits=7, decimal_places=2)
     venda_cartao = models.DecimalField(max_digits=7, decimal_places=2)

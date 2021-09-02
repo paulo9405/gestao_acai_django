@@ -1,17 +1,31 @@
 {% extends "base.html" %}
 {% load bootstrap %}
 
+
+{% block menu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'core_dashboard' %}">Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'core_venda_create' %}">Cadastrar venda</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'core_venda_lista' %}">Lista de vendas</a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block main %}
+
 <div class="row">
     <div class="col-12">
-
-            </tbody>
-        </table>
-    </div>
-
-    <div class="col-12">
         <br>
-        <h2 class="btn btn-info btn-lg btn-block font-weight-bold">Vendas Total</h2>
+        <div class="btn btn-info col-12 font-weight-bold">
+            <h2> Dashboard </h2>
+	    </div>
         <table class="table font-weight-bold">
             <thead class="thead">
                 <tr>
@@ -39,15 +53,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <a href="{% url 'core_venda_create' %}" class="btn btn-outline-info btn-lg btn-block font-weight-bold">Cadastrar venda do dia</a>
-    </div>
-
-    <div class="col-6">
-        <a href="{% url 'core_venda_lista' %}" class="btn btn-outline-info btn-lg btn-block font-weight-bold">Ir para lista de vendas diarias</a>
     </div>
 </div>
 {% endblock  %}

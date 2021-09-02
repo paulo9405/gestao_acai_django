@@ -2,11 +2,30 @@
 {% load bootstrap %}
 
 
+{% block menu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'core_dashboard' %}">Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'core_venda_create' %}">Cadastrar venda</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'core_venda_lista' %}">Lista de vendas</a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block main %}
 <div class="row">
     <div class="col-12">
         <br>
-        <h2 class="btn btn-info btn-lg btn-block font-weight-bold">Vendas diarias</h2>
+        <div class="btn btn-info col-12 font-weight-bold">
+            <h2> Vendas Diarias </h2>
+	    </div>
+
         <table class="table font-weight-bold">
             <thead class="thead">
                 <tr>
@@ -42,8 +61,4 @@
         </table>
     </div>
 </div>
-<a href="{% url 'core_dashboard' %}" class="btn btn-outline-info btn-lg btn-block">Voltar para o dashboard</a>
-
-
-
 {% endblock  %}
