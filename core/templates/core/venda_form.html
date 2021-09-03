@@ -21,15 +21,15 @@
 {% block main %}
 <br>
 <div class="container">
-	<div class="btn btn-info col-12 font-weight-bold">
+	<div class="col-12 font-weight-bold text-center text-uppercase p-3 mb-2 bg-info text-white">
         <h2> Cadastro de Vendas </h2>
 	</div>
 	<form action="{% url 'core_venda_create' %}" method="POST">
 		<br>
 		{% csrf_token %}
-		<div class="form-row font-weight-bold">
+		<div class="form-row font-weight-bold text-info">
 			<div class="col-md-6 mb-3">
-				<label for="id_dia_da_venda">Dia da venda ex: 01/12/2010</label>
+				<label for="id_dia_da_venda" >Dia da venda ex: 01/12/2010</label>
 				<input type="text" name="dia_da_venda" class="form-control" id="validationDefault03" placeholder="Dia da venda" required>
 			</div>
 			
@@ -38,17 +38,17 @@
 				<input type="text" name="quantidade_entregas" class="form-control" id="validationDefault03" placeholder="Entragas" required>
 			</div>
 		</div>
-		<div class="form-row">
-			<div class="col-md-6 mb-3 font-weight-bold">
-				<label for="id_venda_dinheiro">Dinheiro</label>
+		<div class="form-row text-info">
+			<div class="col-md-6 mb-3 font-weight-bold ">
+				<label for="id_venda_dinheiro">Venda Dinheiro</label>
 				<input type="text" name="venda_dinheiro" class="form-control" id="validationDefault03" placeholder="Dinheiro" required>
 			</div>
 			<div class="col-md-6 mb-3 font-weight-bold">
-				<label for="id_venda_cartao">Cartão</label>
+				<label for="id_venda_cartao">Venda Cartão</label>
 				<input type="text" name="venda_cartao" class="form-control" id="validationDefault03" placeholder="Cartão" required>
 			</div>
 		</div>
-		<div class="form-row font-weight-bold">
+		<div class="form-row font-weight-bold text-info">
 			<div class="col-md-6 mb-3">
 				<label for="id_compras">Compras</label>
 				<input type="text" name="compras" class="form-control" id="validationDefault03" placeholder="Compras" required>
@@ -58,7 +58,7 @@
 				<input type="text" name="descricao_compras" class="form-control" id="validationDefault03" placeholder="Descrição de compras" required>
 			</div>
 		</div>
-		<div class="form-row">
+		<div class="form-row text-info">
 			<div class="col-md-6 mb-3 font-weight-bold">
 				<label for="id_despesas">Despesas</label>
 				<input type="text" name="despesas" class="form-control" id="validationDefault03" placeholder="Despesas" required>

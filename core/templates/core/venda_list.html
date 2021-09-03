@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load bootstrap %}
 
-
+<link rel="stylesheet" href="style.css">
 {% block menu %}
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -19,18 +19,19 @@
 {% endblock %}
 
 {% block main %}
+
 <div class="row">
     <div class="col-12">
         <br>
-        <div class="btn btn-info col-12 font-weight-bold">
+        <div class=" col-12 font-weight-bold text-center text-uppercase p-3 mb-2 bg-info text-white">
             <h2> Vendas Diarias </h2>
 	    </div>
 
-        <table class="table font-weight-bold">
+        <table class="table table-striped font-weight-bold">
             <thead class="thead">
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Dia</th>
+                <th scope="col" class="text-warning">Dia da venda</th>
                 <th scope="col">Entregas</th>
                 <th scope="col" class="text-primary">Dinheiro</th>
                 <th scope="col" class="text-primary">Cartão</th>
@@ -45,7 +46,7 @@
                 {% for venda in object_list %}
                 <tr>
                 <th scope="row">{{venda.id}}</th> <!--venda.somames()-->
-                <td>{{venda.dia_da_venda}}</td>
+                <td class="text-warning">{{venda.dia_da_venda}}</td>
                 <td >{{venda.quantidade_entregas}}</td>
                 <td class="text-primary">{{venda.venda_dinheiro}}</td>
                 <td class="text-primary">{{venda.venda_cartao}}</td>
