@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div class="container-fluid p-3 mb-2 bg-light text-white">
+    <div class="container-fluid p-3 mb-2 bg-light">
 
         {% block menu %}
         {% endblock %}
@@ -21,6 +21,12 @@
         {% endblock %}
 
         {% block main %}
+        {% endblock %}
+    </div>
+
+    <div class="container col-3 p-3 mb-2 bg-light
+ rounded">
+        {% block login %}
         {% endblock %}
     </div>
 
