@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import CreateView, ListView
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Venda
 
 
+@method_decorator(login_required, name='dispatch')
 class DashboardView(View):
     def get(self, request):
         data = {}
@@ -21,6 +23,7 @@ class DashboardView(View):
         return render(request, 'core/dashboard.html', data)
 
 
+@method_decorator(login_required, name='dispatch')
 class VendaCreate(CreateView):
     model = Venda
     fields = [
@@ -36,5 +39,6 @@ class VendaCreate(CreateView):
     success_url = '/core/dashboard'
 
 
+@method_decorator(login_required, name='dispatch')
 class VendaLista(ListView):
     model = Venda
