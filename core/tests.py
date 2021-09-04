@@ -3,7 +3,9 @@ from django.test import TestCase
 from core.models import Venda
 from core.forms import VendaForm
 
+
 class VendaTestCase(TestCase):
+#TODO: Falta o teste para somar dinheiro e cartão descontando 3% da venda do cartão
 
     def setUp(self):
         credentials = {
@@ -61,6 +63,9 @@ class VendaTestCase(TestCase):
 
 
     def test_criar_venda(self):
+        """
+        Teste para criar uma venda verificando se os dados não são None.
+        """
         data = {
             "dia_da_venda": '2020-12-30',
             "quantidade_entregas": 10,
@@ -81,11 +86,65 @@ class VendaTestCase(TestCase):
 
         self.assertIsNotNone(venda)
 
-#TODO: testar somas do dinheiro e cartao
-#TODO: testar somas do de despesa e compra
-#TODO: testar soma liquida
-'''
     def test_sum_dinheiro_cartao(self):
+        """
+        Soma dinheiro com cartão
+        """
+        data = {
+            "dia_da_venda": '2020-12-30',
+            "quantidade_entregas": 10,
+            "venda_dinheiro": 50,
+            "venda_cartao": 30,
+            "compras": 2,
+            "despesas": 1,
+        }
+
+        venda = Venda.objects.create(
+            dia_da_venda=data['dia_da_venda'],
+            quantidade_entregas=data['quantidade_entregas'],
+            venda_dinheiro=data['venda_dinheiro'],
+            venda_cartao=data['venda_cartao'],
+            compras=data['compras'],
+            despesas=data['despesas'],
+            venda_total_dia=data['venda_dinheiro'] + data['venda_cartao'],
+        )
+
+        total = venda.venda_total_dia
+
+        self.assertEqual(total, 80)
+
+    def test_sum_despesas(self):
+        """
+        Teste para somar as despesas
+        """
+        data = {
+            "dia_da_venda": '2020-12-30',
+            "quantidade_entregas": 10,
+            "venda_dinheiro": 50,
+            "venda_cartao": 30,
+            "compras": 2,
+            "despesas": 1,
+        }
+
+        venda = Venda.objects.create(
+            dia_da_venda=data['dia_da_venda'],
+            quantidade_entregas=data['quantidade_entregas'],
+            venda_dinheiro=data['venda_dinheiro'],
+            venda_cartao=data['venda_cartao'],
+            compras=data['compras'],
+            despesas=data['despesas'],
+            venda_total_dia=data['venda_dinheiro'] + data['venda_cartao'],
+            despesa_do_dia=data['compras'] + data['despesas'],
+        )
+
+        total = venda.despesa_do_dia
+
+        self.assertEqual(total, 3)
+
+    def test_sum_lucro_liquido(self):
+        """
+        Teste para retornar o valor liquido
+        """
         data = {
             "dia_da_venda": '2020-12-30',
             "quantidade_entregas": 10,
@@ -94,20 +153,21 @@ class VendaTestCase(TestCase):
             "compras": 2,
             "despesas": 1,
 
+
         }
 
         venda = Venda.objects.create(
-            usuario_id=self.user.id,
             dia_da_venda=data['dia_da_venda'],
             quantidade_entregas=data['quantidade_entregas'],
             venda_dinheiro=data['venda_dinheiro'],
             venda_cartao=data['venda_cartao'],
             compras=data['compras'],
             despesas=data['despesas'],
-
+            venda_total_dia=data['venda_dinheiro'] + data['venda_cartao'],
+            despesa_do_dia=data['compras'] + data['despesas'],
+            lucro_liquido_dia=((data['venda_dinheiro'] + data['venda_cartao']) -
+                               data['compras'] + data['despesas']),
         )
 
-        data = VendaForm(self).data
-        self.assertEqual(data["venda_total_dia"], 80)
-'''
-
+        total = venda.lucro_liquido_dia
+        self.assertEqual(total, 77)
