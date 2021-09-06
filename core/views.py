@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Venda
+from .models import Venda, Colaborador
+from django.urls import reverse_lazy
 
 
 @method_decorator(login_required, name='dispatch')
@@ -36,9 +37,25 @@ class VendaCreate(CreateView):
             'despesas',
             'descricao_despesas',
         ]
+    #TODO: reverse lazy esta dando erro(Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name), corrigir futuramenbte
     success_url = '/core/dashboard'
+    # success_url = reverse_lazy('dashboard')
 
 
 @method_decorator(login_required, name='dispatch')
 class VendaLista(ListView):
     model = Venda
+
+
+@method_decorator(login_required, name='dispatch')
+class ColaboradorCreate(CreateView):
+    model = Colaborador
+    fields = [
+        'nome', 'telefone', 'endereço', 'salario', 'descricao_salario',
+    ]
+    success_url = '/core/colaborador_list'
+
+
+@method_decorator(login_required, name='dispatch')
+class ColaboradoresLista(ListView):
+    model = Colaborador
