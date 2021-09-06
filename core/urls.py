@@ -5,7 +5,6 @@ from .views import (
     VendaLista,
     ColaboradorCreate,
     ColaboradoresLista,
-    ColaboradorUpdate,
 )
 
 
