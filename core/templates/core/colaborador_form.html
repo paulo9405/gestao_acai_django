@@ -9,7 +9,7 @@
         {% csrf_token %}
         {{ form|bootstrap }}
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <a href="{% url 'core_colaborador_create' %}" class="btn btn-secondary">Voltar</a>
+        <a href="{% url 'core_colaboradores_list' %}" class="btn btn-secondary">Voltar</a>
 
     </form>
 </div>
