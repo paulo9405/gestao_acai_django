@@ -12,33 +12,30 @@
 
 {% endif %}
 <div class="text-center">
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p class="col-12 font-weight-bold text-center text-uppercase p-1 mb-2 bg-info text-white rounded">Usuário e senha</p>
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p class="col-12 font-weight-bold text-center text-uppercase p-1 mb-2 bg-info text-white rounded">Usuário e senha</p>
+        {% endif %}
     {% endif %}
-{% endif %}
 </div>
 
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td class="font-weight-bold">{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td class="font-weight-bold">{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+    {% csrf_token %}
+    <table>
+    <tr>
+        <td class="font-weight-bold">{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+        <td class="font-weight-bold">{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+    </table>
 
-<input class="rounded btn btn-info font-weight-bold" type="submit" value="Entrar">
-<input type="hidden" name="next" value="{{ next }}">
+    <input class="rounded btn btn-info font-weight-bold" type="submit" value="Entrar">
+    <input type="hidden" name="next" value="{{ next }}">
 </form>
-
-
 {% endblock %}
