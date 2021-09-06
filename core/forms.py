@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Venda
+from .models import Venda, Colaborador
 
 
 class VendaForm(ModelForm):
@@ -14,4 +14,16 @@ class VendaForm(ModelForm):
             'descricao_compras',
             'despesas',
             'descricao_despesas',
+        )
+
+
+class ColaboradorForm(ModelForm):
+    class Meta:
+        model = Colaborador
+        fields = (
+            'nome',
+            'telefone',
+            'endereço',
+            'salario',
+            'descricao_salario',
         )

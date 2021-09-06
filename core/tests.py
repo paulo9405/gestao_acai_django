@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from core.models import Venda
-from core.forms import VendaForm
+from core.models import Venda, Colaborador
+from core.forms import VendaForm, ColaboradorForm
 
+
+# Teste classe Venda
 
 class VendaTestCase(TestCase):
 #TODO: Falta o teste para somar dinheiro e cartão descontando 3% da venda do cartão
@@ -13,9 +15,9 @@ class VendaTestCase(TestCase):
             'password': 'paulo@12345'}
         self.user = User.objects.create_user(**credentials)
 
-    def test_form_is_valid(self):
+    def test_form_venda_is_valid(self):
         """
-        Teste para validar o fomulario
+        Teste para validar o fomulario de vendas
         """
         data_model = {
             "dia_da_venda": '2020-12-30',
@@ -29,7 +31,7 @@ class VendaTestCase(TestCase):
         form = VendaForm(data=data_model)
         self.assertTrue(form.is_valid())
 
-    def test_form_is_not_valid(self):
+    def test_form_venda_is_not_valid(self):
         """
         Teste para dar erro de formulario, prenchimento errado
         """
@@ -45,7 +47,7 @@ class VendaTestCase(TestCase):
         form = VendaForm(data=data_model)
         self.assertFalse(form.is_valid())
 
-    def test_form_field_empty(self):
+    def test_form_venda_field_empty(self):
         """
         Teste para dar erro de formulario com campo obrigatório vazio.
         """
@@ -171,3 +173,68 @@ class VendaTestCase(TestCase):
 
         total = venda.lucro_liquido_dia
         self.assertEqual(total, 77)
+
+
+# Teste classe Colaborador
+
+
+    def test_form_colaborador_is_valid(self):
+        """
+        Teste para validar o fomulario de colaborador
+        """
+        data_model = {
+            "nome": 'Paulo',
+            "telefone": '123456789',
+            "endereço": 'Rua tal, numero X',
+            "salario": 100,
+        }
+
+        form = ColaboradorForm(data=data_model)
+        self.assertTrue(form.is_valid())
+
+    def test_form_colaborador_is_not_valid(self):
+        """
+        Teste para dar erro de formulario, prenchimento errado
+        """
+        data_model = {
+            "nome": 123132,
+            "telefone": 121212,
+            "endereço": 54545,
+            "salario": 'sdfgdvgdf',
+        }
+
+        form = ColaboradorForm(data=data_model)
+        self.assertFalse(form.is_valid())
+
+    def test_form_colaborador_field_empty(self):
+        """
+        Teste para dar erro de formulario com campo obrigatório vazio.
+        """
+        data_model = {
+            "nome": '',
+            "telefone": '',
+            "endereço": '',
+            "salario": '',
+        }
+
+        form = ColaboradorForm(data=data_model)
+        self.assertFalse(form.is_valid())
+
+    def test_criar_colaborador(self):
+        """
+        Teste para criar um colaborador verificando se os dados não são None.
+        """
+        data = {
+            "nome": 'Paulo',
+            "telefone": '123456789',
+            "endereço": 'Rua tal, numero X',
+            "salario": 100,
+        }
+        colaborador = Colaborador.objects.create(
+            nome=data['nome'],
+            telefone=data['telefone'],
+            endereço=data['endereço'],
+            salario=data['salario'],
+        )
+
+        self.assertIsNotNone(colaborador)
