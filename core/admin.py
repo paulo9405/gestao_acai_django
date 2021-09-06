@@ -1,5 +1,6 @@
 from django.contrib import admin
-from.models import Venda
+from.models import Venda, Colaborador
+
 
 class VendaAdmin(admin.ModelAdmin):
     fields = (
@@ -33,3 +34,4 @@ class VendaAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Venda, VendaAdmin)
+admin.site.register(Colaborador)
