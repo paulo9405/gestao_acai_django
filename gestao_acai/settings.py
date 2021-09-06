@@ -23,8 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
-    'core',
     'colaboradores',
+    'core',
 ]
 
 MIDDLEWARE = [
