@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+
+{% block main %}
+<div class="col-6">
+    <h3>Novo Colaborador</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="{% url 'core_colaborador_create' %}" class="btn btn-secondary">Voltar</a>
+
+    </form>
+</div>
+{% endblock %}
