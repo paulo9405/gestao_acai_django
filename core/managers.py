@@ -18,10 +18,16 @@ class VendaManager(models.Manager):
         )['tot_dinheiro'] or 0
 
     # TODO: calculo para diminuir 3% do cartão
+    '''
     def venda_mensal_cartao(self):
         return self.all().aggregate(
             tot_cartao=Sum(('venda_cartao'), output_field=FloatField())
         )['tot_cartao'] or 0
+    '''
+    #TODO: criar uma logica mais simples para essa função
+    def venda_mensal_cartao_desconto(self):
+        #return self.all().aggregate(tot_cartao=Sum(('venda_cartao'), output_field=FloatField()))['tot_cartao'] or 0
+        return self.all().aggregate(tot_cartao=Sum((F('venda_cartao') - (F('venda_cartao') * 3 / 100)), output_field=FloatField()))['tot_cartao'] or 0
 
     def soma_venda_dinheiro_cartao(self):
         return self.all().aggregate(
@@ -43,7 +49,6 @@ class VendaManager(models.Manager):
             tot_desp=Sum((F('compras') + F('despesas')), output_field=FloatField())
         )['tot_desp'] or 0
 
+    # TODO: criar uma logica mais simples para essa função
     def soma_mensal_lucro_liquido(self):
-        return self.all().aggregate(
-            lucro=Sum(((F('venda_dinheiro') + F('venda_cartao')) - F('compras')
-                       - F('despesas')), output_field=FloatField()))['lucro'] or 0
+        return self.all().aggregate(lucro=Sum(((F('venda_dinheiro') + F('venda_cartao') - (F('venda_cartao') * 3 / 100)) - F('compras')- F('despesas')), output_field=FloatField()))['lucro'] or 0

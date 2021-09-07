@@ -14,7 +14,7 @@ class DashboardView(View):
         data['quantidade_entregas'] = Venda.objects.quantidade_entregas()
         data['media_entregas'] =Venda.objects.media_entregas()
         data['venda_mensal_dinheiro'] =Venda.objects.venda_mensal_dinheiro()
-        data['venda_mensal_cartao'] =Venda.objects.venda_mensal_cartao()
+        data['venda_mensal_cartao'] =Venda.objects.venda_mensal_cartao_desconto()
         data['soma_venda_dinheiro_cartao'] =Venda.objects.soma_venda_dinheiro_cartao()
         data['despesa_mensal'] =Venda.objects.despesa_mensal()
         data['compras_mensal'] =Venda.objects.compras_mensal()
