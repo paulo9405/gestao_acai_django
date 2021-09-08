@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.test import TestCase
 from core.models import Venda, Colaborador
 from core.forms import VendaForm, ColaboradorForm
@@ -8,12 +7,6 @@ from core.forms import VendaForm, ColaboradorForm
 
 class VendaTestCase(TestCase):
 #TODO: Falta o teste para somar dinheiro e cartão descontando 3% da venda do cartão
-
-    def setUp(self):
-        credentials = {
-            'username': 'paulo',
-            'password': 'paulo@12345'}
-        self.user = User.objects.create_user(**credentials)
 
     def test_form_venda_is_valid(self):
         """
