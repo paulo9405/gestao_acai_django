@@ -12,14 +12,14 @@ class DashboardView(View):
     def get(self, request):
         data = {}
         data['quantidade_entregas'] = Venda.objects.quantidade_entregas()
-        data['media_entregas'] =Venda.objects.media_entregas()
-        data['venda_mensal_dinheiro'] =Venda.objects.venda_mensal_dinheiro()
-        data['venda_mensal_cartao'] =Venda.objects.venda_mensal_cartao_desconto()
-        data['soma_venda_dinheiro_cartao'] =Venda.objects.soma_venda_dinheiro_cartao()
-        data['despesa_mensal'] =Venda.objects.despesa_mensal()
-        data['compras_mensal'] =Venda.objects.compras_mensal()
-        data['soma_despesa_total'] =Venda.objects.soma_despesa_total()
-        data['soma_mensal_lucro_liquido'] =Venda.objects.soma_mensal_lucro_liquido()
+        data['media_entregas'] = Venda.objects.media_entregas()
+        data['venda_mensal_dinheiro'] = Venda.objects.venda_mensal_dinheiro()
+        data['venda_mensal_cartao'] = Venda.objects.venda_mensal_cartao_desconto()
+        data['soma_venda_dinheiro_cartao'] = Venda.objects.soma_venda_dinheiro_cartao()
+        data['despesa_mensal'] = Venda.objects.despesa_mensal()
+        data['compras_mensal'] = Venda.objects.compras_mensal()
+        data['soma_despesa_total'] = Venda.objects.soma_despesa_total()
+        data['soma_mensal_lucro_liquido'] = Venda.objects.soma_mensal_lucro_liquido()
 
         return render(request, 'core/dashboard.html', data)
 
@@ -39,7 +39,7 @@ class VendaCreate(CreateView):
         ]
     #TODO: reverse lazy esta dando erro(Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name), corrigir futuramenbte
     success_url = '/core/venda_list'
-    # success_url = reverse_lazy('dashboard')
+    #success_url = reverse_lazy('venda_list')
 
 
 @method_decorator(login_required, name='dispatch')

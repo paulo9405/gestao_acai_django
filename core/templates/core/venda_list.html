@@ -9,10 +9,6 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'core_venda_create' %}">Cadastrar venda</a>
-        </li>
-
-        <li class="nav-item">
             <a class="nav-link active" href="{% url 'core_venda_lista' %}">Lista de vendas</a>
         </li>
 
@@ -41,8 +37,13 @@
 <div class="row">
     <div class="col-12">
         <br>
-        <div class=" col-12 font-weight-bold text-center text-uppercase p-3 mb-2 bg-info text-white">
-            <h2> Vendas Diarias </h2>
+        <div class=" row col-12 font-weight-bold text-uppercase p-3 mb-2 bg-info text-white">
+            <div class="col-6 text-center">
+                <h2> Vendas Diarias </h2>
+            </div>
+            <div class="col-6 ">
+                <a href="{% url 'core_venda_create' %}" class="btn btn-light btn-lg font-weight-bold ">Cadastrar Venda</a>
+            </div>
 	    </div>
 
         <table class="table table-striped font-weight-bold">
@@ -63,7 +64,7 @@
             <tbody>
                 {% for venda in object_list %}
                 <tr>
-                <th scope="row">{{venda.id}}</th> <!--venda.somames()-->
+                <th scope="row">{{venda.id}}</th>
                 <td class="text-warning">{{venda.dia_da_venda}}</td>
                 <td >{{venda.quantidade_entregas}}</td>
                 <td class="text-primary">{{venda.venda_dinheiro}}</td>
