@@ -38,7 +38,7 @@ class VendaCreate(CreateView):
             'descricao_despesas',
         ]
     #TODO: reverse lazy esta dando erro(Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name), corrigir futuramenbte
-    success_url = '/core/dashboard'
+    success_url = '/core/venda_list'
     # success_url = reverse_lazy('dashboard')
 
 
