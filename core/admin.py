@@ -1,5 +1,5 @@
 from django.contrib import admin
-from.models import Venda, Colaborador
+from.models import Venda #Colaborador
 
 
 class VendaAdmin(admin.ModelAdmin):
@@ -34,4 +34,4 @@ class VendaAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Venda, VendaAdmin)
-admin.site.register(Colaborador)
+#admin.site.register(Colaborador)

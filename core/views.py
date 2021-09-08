@@ -3,7 +3,7 @@ from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Venda, Colaborador
+from .models import Venda #Colaborador
 from django.urls import reverse_lazy
 
 
@@ -47,15 +47,15 @@ class VendaLista(ListView):
     model = Venda
 
 
-@method_decorator(login_required, name='dispatch')
-class ColaboradorCreate(CreateView):
-    model = Colaborador
-    fields = [
-        'nome', 'telefone', 'endereço', 'salario', 'descricao_salario',
-    ]
-    success_url = '/core/colaborador_list'
+# @method_decorator(login_required, name='dispatch')
+# class ColaboradorCreate(CreateView):
+#     model = Colaborador
+#     fields = [
+#         'nome', 'telefone', 'endereço', 'salario', 'descricao_salario',
+#     ]
+#     success_url = '/core/colaborador_list'
 
 
-@method_decorator(login_required, name='dispatch')
-class ColaboradoresLista(ListView):
-    model = Colaborador
+# @method_decorator(login_required, name='dispatch')
+# class ColaboradoresLista(ListView):
+#     model = Colaborador
