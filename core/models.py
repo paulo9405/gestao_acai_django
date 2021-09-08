@@ -29,15 +29,15 @@ class Venda(models.Model):
         return super(Venda, self).save(*args, **kwargs)
 
 
-# class Colaborador(models.Model):
-#     nome = models.CharField(max_length=200)
-#     telefone = models.CharField(max_length=20)
-#     endereço = models.CharField(max_length=200)
-#     salario = models.DecimalField(max_digits=7, decimal_places=2)
-#     descricao_salario = models.CharField(max_length=200, null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.nome
+class Colaborador(models.Model):
+    nome = models.CharField(max_length=200)
+    telefone = models.CharField(max_length=20)
+    endereço = models.CharField(max_length=200)
+    salario = models.DecimalField(max_digits=7, decimal_places=2)
+    descricao_salario = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
 
 '''
 class SalarioColaborador(models):
