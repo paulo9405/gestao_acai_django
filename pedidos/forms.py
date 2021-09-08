@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import CadastroAcai
+from .models import CadastroAcai, CadastroAcrescimos
 
 
 class CadastroAcaiForm(ModelForm):
@@ -8,5 +8,13 @@ class CadastroAcaiForm(ModelForm):
         fields = (
             'nome',
             'tamanho',
+            'valor',
+        )
+
+class CadastroAcrecimosForm(ModelForm):
+    class Meta:
+        model = CadastroAcrescimos
+        fields = (
+            'nome',
             'valor',
         )
