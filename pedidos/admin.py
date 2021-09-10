@@ -3,30 +3,28 @@ from .models import CadastroAcai, CadastroAcrescimos, Pedido
 
 
 class CadastroAcaiAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'tamanho', 'valor')
+    list_display = ('nome', 'tamanho', 'valor', 'id')
 
 
 class CadastroAcrecimosAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'valor')
+    list_display = ('nome', 'valor', 'id')
 
 
 class PedidoAdmin(admin.ModelAdmin):
     list_display = (
+        'nome_cliente',
         'id',
         'dia',
-        'nome_cliente',
         'telefone',
         'endereco',
-        'acai_pedido',
-        'acrescimo_pedido',
         'pagamento',
-        'valor_pagar',
+        'total',
     )
 
-    # def total(self, obj):
-    #     return obj.get_total()
-    #
-    # total.short_description = 'Total'
+    def total(self, obj):
+        return obj.get_total()
+
+    total.short_description = 'Total'
 
     fieldsets = (
         ('Dados do Cliente', {'fields': ('nome_cliente', 'telefone', 'endereco')}),
@@ -36,9 +34,6 @@ class PedidoAdmin(admin.ModelAdmin):
     readonly_fields = ('valor_pagar',)
     search_fields = ('id', 'nome_cliente')
     raw_id_fields = ('acai_pedido', 'acrescimo_pedido')
-
-
-
 
 
 admin.site.register(CadastroAcai, CadastroAcaiAdmin)
