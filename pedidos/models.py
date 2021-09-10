@@ -1,6 +1,6 @@
 from django.db import models
-from django.db.models import Sum, F
-from django.forms import FloatField
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
 
 
 class CadastroAcai(models.Model):
@@ -46,3 +46,5 @@ class Pedido(models.Model):
 
     def __str__(self):
         return str(self.acai_pedido) + ' - ' + str(self.nome_cliente)
+
+
