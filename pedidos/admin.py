@@ -1,6 +1,15 @@
 from django.contrib import admin
 from .models import CadastroAcai, CadastroAcrescimos, Pedido
 
+
+class CadastroAcaiAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'tamanho', 'valor')
+
+
+class CadastroAcrecimosAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'valor')
+
+
 class PedidoAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -26,11 +35,12 @@ class PedidoAdmin(admin.ModelAdmin):
 
     readonly_fields = ('valor_pagar',)
     search_fields = ('id', 'nome_cliente')
+    raw_id_fields = ('acai_pedido', 'acrescimo_pedido')
 
 
 
 
 
-admin.site.register(CadastroAcai)
-admin.site.register(CadastroAcrescimos)
+admin.site.register(CadastroAcai, CadastroAcaiAdmin)
+admin.site.register(CadastroAcrescimos, CadastroAcrecimosAdmin)
 admin.site.register(Pedido, PedidoAdmin)
