@@ -43,7 +43,7 @@ class Pedido(models.Model):
 
         soma = tot_acai + tot_acre
         self.valor_pagar = soma
-        self.save()
+        Pedido.objects.filter(id=self.id).update(valor_pagar=soma)
 
 
 class ItemDoPedidoAcai(models.Model):
@@ -72,6 +72,11 @@ def update_vendas_total_acai(sender, instance, **kwargs):
 @receiver(post_save, sender=ItemDoPedidoAcre)
 def update_vendas_total_acre(sender, instance, **kwargs):
     instance.pedido.calcular_total()
+
+
+@receiver(post_save, sender=Pedido)
+def update_vendas_total(sender, instance, **kwargs):
+    instance.calcular_total()
 
 
 #@receiver(post_save, sender=ItemDoPedido)
