@@ -1,7 +1,7 @@
 from django.db import models
-from django.db.models.signals import m2m_changed, post_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.db.models import Sum, F, FloatField, Max, Avg, Min, Count
+from django.db.models import Sum, F, FloatField
 
 
 class CadastroAcai(models.Model):
@@ -77,15 +77,3 @@ def update_vendas_total_acre(sender, instance, **kwargs):
 @receiver(post_save, sender=Pedido)
 def update_vendas_total(sender, instance, **kwargs):
     instance.calcular_total()
-
-
-#@receiver(post_save, sender=ItemDoPedido)
-# def update_vendas_total(sender, instance, **kwargs):
-#     instance.valor_pagar = instance.calcular_total_acai()
-#     instance.save()
-
-# @receiver(post_save, sender=Venda)
-# def update_vendas_total2(sender, instance, **kwargs):
-#     instance.calcular_total()
-
-

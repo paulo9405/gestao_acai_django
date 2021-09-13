@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum, F, FloatField, Max, Avg, Min, Count
+from django.db.models import Sum, F, FloatField, Avg
 
 
 class VendaManager(models.Manager):
