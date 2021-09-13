@@ -31,6 +31,7 @@ class PedidoAdmin(admin.ModelAdmin):
         'telefone',
         'endereco',
         'pagamento',
+        'valor_pagar',
     )
 
     fieldsets = (
@@ -41,13 +42,6 @@ class PedidoAdmin(admin.ModelAdmin):
     readonly_fields = ('valor_pagar',)
     search_fields = ('id', 'nome_cliente',)
     inlines = [ItemPedidoInLineAcai, ItemPedidoInLineAcre]
-
-
-    # def total(self, obj):
-    #     return obj.get_total()
-    #
-    # total.short_description = 'Total'
-
 
 admin.site.register(CadastroAcai, CadastroAcaiAdmin)
 admin.site.register(CadastroAcrescimos, CadastroAcrecimosAdmin)
