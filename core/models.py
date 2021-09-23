@@ -22,6 +22,7 @@ class Venda(models.Model):
         return str(self.dia_da_venda)
 
     def save(self, *args, **kwargs):
+        self.venda_cartao = self.venda_cartao - (self.venda_cartao * 3 / 100)
         self.venda_total_dia = (self.venda_dinheiro + self.venda_cartao)
         self.despesa_do_dia = (self.despesas + self.compras)
         self.lucro_liquido_dia = (self.venda_total_dia - self.compras - self.despesas)
@@ -32,18 +33,9 @@ class Venda(models.Model):
 class Colaborador(models.Model):
     nome = models.CharField(max_length=200)
     telefone = models.CharField(max_length=20)
-    endereço = models.CharField(max_length=200)
+    endereco = models.CharField(max_length=200)
     salario = models.DecimalField(max_digits=7, decimal_places=2)
     descricao_salario = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.nome
-
-'''
-class SalarioColaborador(models):
-    pass
-    #colaborador fk
-    # dia
-    # valor
-    # choice (salario, vale)
-'''
