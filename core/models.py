@@ -18,6 +18,9 @@ class Venda(models.Model):
 
     objects = VendaManager()
 
+    class Meta:
+        unique_together = ('dia_da_venda', )
+
     def __str__(self):
         return str(self.dia_da_venda)
 
@@ -36,6 +39,9 @@ class Colaborador(models.Model):
     endereco = models.CharField(max_length=200)
     salario = models.DecimalField(max_digits=7, decimal_places=2)
     descricao_salario = models.CharField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        unique_together = ('nome', 'telefone')
 
     def __str__(self):
         return self.nome
