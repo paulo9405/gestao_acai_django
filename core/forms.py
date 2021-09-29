@@ -23,7 +23,7 @@ class ColaboradorForm(ModelForm):
         fields = (
             'nome',
             'telefone',
-            'endereço',
+            'endereco',
             'salario',
             'descricao_salario',
         )

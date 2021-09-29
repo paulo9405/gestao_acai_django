@@ -51,9 +51,10 @@ class VendaLista(ListView):
 class ColaboradorCreate(CreateView):
     model = Colaborador
     fields = [
-        'nome', 'telefone', 'endereço', 'salario', 'descricao_salario',
+        'nome', 'telefone', 'endereco', 'salario', 'descricao_salario',
     ]
     success_url = '/core/colaborador_list'
+
 
 
 @method_decorator(login_required, name='dispatch')
