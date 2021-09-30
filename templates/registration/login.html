@@ -37,5 +37,7 @@
 
     <input class="rounded btn btn-info font-weight-bold" type="submit" value="Entrar">
     <input type="hidden" name="next" value="{{ next }}">
+
 </form>
+<a href="{% url 'password_reset' %}">Esqueceu a senha?</a>
 {% endblock %}
