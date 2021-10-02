@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db.models import Sum, F, FloatField
 
 
-class CadastroAcai(models.Model):
+class Acai(models.Model):
     nome = models.CharField(max_length=50)
     tamanho = models.CharField(max_length=20)
     valor = models.DecimalField(max_digits=7, decimal_places=2)
@@ -13,7 +13,7 @@ class CadastroAcai(models.Model):
         return str(self.nome) + ' / ' + str(self.tamanho) + ' / R$ ' + str(self.valor)
 
 
-class CadastroAcrescimos(models.Model):
+class Acrescimo(models.Model):
     nome = models.CharField(max_length=50)
     valor = models.DecimalField(max_digits=7, decimal_places=2)
 
@@ -48,7 +48,7 @@ class Pedido(models.Model):
 
 class ItemDoPedidoAcai(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    acai = models.ForeignKey(CadastroAcai, on_delete=models.CASCADE)
+    acai = models.ForeignKey(Acai, on_delete=models.CASCADE)
     quantidade = models.FloatField()
 
     def __str__(self):
@@ -57,7 +57,7 @@ class ItemDoPedidoAcai(models.Model):
 
 class ItemDoPedidoAcre(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    acrescimo = models.ForeignKey(CadastroAcrescimos, on_delete=models.CASCADE)
+    acrescimo = models.ForeignKey(Acrescimo, on_delete=models.CASCADE)
     quantidade = models.FloatField()
 
     def __str__(self):
