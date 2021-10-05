@@ -1,4 +1,6 @@
+from django.core.mail import send_mail
 from django.db import models
+from django.template.loader import render_to_string
 from .managers import VendaManager
 
 
@@ -31,6 +33,21 @@ class Venda(models.Model):
         self.lucro_liquido_dia = (self.venda_total_dia - self.compras - self.despesas)
 
         return super(Venda, self).save(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super(Venda, self).save(*args, **kwargs)
+
+        data = {'venda': self.dia_da_venda}
+        plain_text = render_to_string('core/emails/nova_venda.txt', data)
+        html_email = render_to_string('core/emails/nova_venda.html', data)
+        send_mail(
+            'Nova venda cadastrada com sucesso',
+            plain_text,
+            'paulo.ricardo1137.pr@gmail.com',
+            ['paulo.ricardo1137.pr@gmail.com'],
+            html_message=html_email,
+            fail_silently=False,
+        )
 
 
 class Colaborador(models.Model):
