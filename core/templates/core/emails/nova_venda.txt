@@ -1,1 +1,1 @@
-Venda do dia {{ venda }} cadastrada!
+Venda do dia {{ dia.dia_da_venda }} cadastrada!
