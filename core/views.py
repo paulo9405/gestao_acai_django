@@ -59,4 +59,7 @@ class ColaboradorCreate(CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class ColaboradoresLista(ListView):
+    1/0
     model = Colaborador
+
+

@@ -12,6 +12,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['localhost', 'acairose.herokuapp.com']
 
+ADMINS = [('Paulo', 'paulo.ricardo1137.pr@gmail.com')]
+
 
 # Application definition
 
