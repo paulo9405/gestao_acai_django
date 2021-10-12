@@ -56,10 +56,6 @@ class ColaboradorCreate(CreateView):
     success_url = '/core/colaborador_list'
 
 
-
 @method_decorator(login_required, name='dispatch')
 class ColaboradoresLista(ListView):
-    1/0
     model = Colaborador
-
-

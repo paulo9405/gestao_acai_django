@@ -34,11 +34,17 @@ class Venda(models.Model):
         self.despesa_do_dia = (self.despesas + self.compras)
         self.lucro_liquido_dia = (self.venda_total_dia - self.compras - self.despesas)
 
-        return super(Venda, self).save(*args, **kwargs)
+        data = {'dia': self.dia_da_venda,
+                'qtd_entregas': self.quantidade_entregas,
+                'dinheiro': self.venda_dinheiro,
+                'cartao': self.venda_cartao,
+                'compras': self.compras,
+                'despesas': self.despesas,
+                'tot_despesas': self.despesa_do_dia,
+                'bruto': self.venda_total_dia,
+                'liquido': self.lucro_liquido_dia,
+                }
 
-    @receiver(post_save)
-    def envia_email(sender, instance, **kwargs):
-        data = {'dia': instance}
         plain_text = render_to_string('core/emails/nova_venda.txt', data)
         html_email = render_to_string('core/emails/nova_venda.html', data)
         send_mail(
@@ -49,6 +55,22 @@ class Venda(models.Model):
             html_message=html_email,
             fail_silently=False,
         )
+
+        return super(Venda, self).save(*args, **kwargs)
+
+    # @receiver(post_save)
+    # def envia_email(sender, instance, **kwargs):
+    #     data = {'dia': instance}
+    #     plain_text = render_to_string('core/emails/nova_venda.txt', data)
+    #     html_email = render_to_string('core/emails/nova_venda.html', data)
+    #     send_mail(
+    #         'Nova venda cadastrada com sucesso',
+    #         plain_text,
+    #         'paulo.ricardo1137.pr@gmail.com',
+    #         ['paulo.ricardo1137.pr@gmail.com'],
+    #         html_message=html_email,
+    #         fail_silently=False,
+    #     )
 
 
 class Colaborador(models.Model):
