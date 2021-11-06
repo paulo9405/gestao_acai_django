@@ -79,7 +79,8 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a class="btn btn-info" href="{% url 'core_vendas_pdf' %}">Relatorio PDF das vendas</a>
+        <a class="btn btn-info" href="{% url 'core_vendas_pdf' %}">Imprimir PDF das vendas</a>
+        <a class="btn btn-success" href="{% url 'core_vendas_csv' %}">Imprimir CSV das vendas</a>
     </div>
 </div>
 {% endblock  %}

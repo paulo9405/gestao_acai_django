@@ -9,6 +9,7 @@ from django.template.loader import get_template
 import xhtml2pdf.pisa as pisa
 import io
 from django.shortcuts import render
+import csv
 
 
 
@@ -91,3 +92,40 @@ class Vendas_pdf(View):
             'request': request,
         }
         return Render.render('core/vendas-pdf.html', params, 'vendas_pdf')
+
+class Vendas_csv(View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="vendas.csv"'
+
+        vendas = Venda.objects.all()
+
+        writer = csv.writer(response)
+        writer.writerow([
+            'Id',
+            'Dia da venda',
+            'Entregas',
+            'Dinheiro',
+            'Cartão',
+            'Compras',
+            'Despesas',
+            'Total Despesa Do dia',
+            'Venda dinheiro e cartão',
+            'venda liquida'
+        ])
+
+        for venda in vendas:
+            writer.writerow(
+                [venda.id,
+                 venda.dia_da_venda,
+                 venda.quantidade_entregas,
+                 venda.venda_dinheiro,
+                 venda.venda_cartao,
+                 venda.compras,
+                 venda.despesas,
+                 venda.venda_total_dia,
+                 venda.despesa_do_dia,
+                 venda.lucro_liquido_dia
+                 ])
+
+        return response
