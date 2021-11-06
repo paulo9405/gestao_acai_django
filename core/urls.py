@@ -5,6 +5,7 @@ from .views import (
     VendaLista,
     ColaboradorCreate,
     ColaboradoresLista,
+    Vendas_pdf,
 )
 
 
@@ -19,4 +20,7 @@ urlpatterns = [
 
     path('colaborador_list/', ColaboradoresLista.as_view(),
          name="core_colaboradores_list"),
+
+    path('vendas-pdf/', Vendas_pdf.as_view(),
+        name='core_vendas_pdf'),
 ]

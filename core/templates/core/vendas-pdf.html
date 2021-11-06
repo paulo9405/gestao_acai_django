@@ -1,0 +1,48 @@
+<style>
+    .red {
+        color: red;
+    }
+    .blue {
+      color: blue;
+    }
+    .black {
+      color: black;
+    }
+    .green {
+      color: green;
+    }
+    .orange {
+      color: orange;
+    }
+</style>
+
+<h1 class="green">Relatorio de vendas</h1>
+<table>
+  <tr>
+    <td class="black">Id</td>
+    <td class="orange">Dia da venda</td>
+    <td class="black">Entregas</td>
+    <td class="blue">Dinheiro</td>
+    <td class="blue">Cartão</td>
+    <td class="red">Compras</td>
+    <td class="red">Despesas</td>
+    <td class="red">Total despesa do dia</td>
+    <td class="blue">Venda dinheiro e cartão</td>
+    <td class="green">Venda liquida</td>
+  </tr>
+
+  {% for venda in vendas %}
+      <tr>
+        <td class="black">{{ venda.id }}</td>
+        <td class="orange">{{ venda.dia_da_venda }}</td>
+        <td class="black">{{ venda.quantidade_entregas }}</td>
+        <td class="blue">{{ venda.venda_dinheiro }}</td>
+        <td class="blue">{{ venda.venda_cartao }}</td>
+        <td class="red">{{ venda.compras }}</td>
+        <td class="red">{{ venda.despesas }}</td>
+        <td class="red">{{ venda.despesa_do_dia }}</td>
+        <td class="blue">{{ venda.venda_total_dia }}</td>
+        <td class="green">{{ venda.lucro_liquido_dia }}</td>
+      </tr>
+  {% endfor %}
+</table>
