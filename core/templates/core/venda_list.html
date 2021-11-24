@@ -63,19 +63,24 @@
             </thead>
             <tbody>
                 {% for venda in object_list %}
-                <tr>
-                <th scope="row">{{venda.id}}</th>
-                <td class="text-warning">{{venda.dia_da_venda}}</td>
-                <td >{{venda.quantidade_entregas}}</td>
-                <td class="text-primary">{{venda.venda_dinheiro}}</td>
-                <td class="text-primary">{{venda.venda_cartao}}</td>
-                <td class="text-danger">{{venda.compras}}</td>
-                <td class="text-danger">{{venda.despesas}}</td>
-                <td class="text-danger">{{venda.despesa_do_dia}}</td>
-                <td class="text-primary">{{venda.venda_total_dia}}</td>
-                <td class="text-success">{{venda.lucro_liquido_dia}}</td>
+                    <tr>
+                        <th scope="row">{{venda.id}}</th>
+                        <td class="text-warning">{{venda.dia_da_venda}}</td>
+                        <td >{{venda.quantidade_entregas}}</td>
+                        <td class="text-primary">{{venda.venda_dinheiro}}</td>
+                        <td class="text-primary">{{venda.venda_cartao}}</td>
+                        <td class="text-danger">{{venda.compras}}</td>
+                        <td class="text-danger">{{venda.despesas}}</td>
+                        <td class="text-danger">{{venda.despesa_do_dia}}</td>
+                        <td class="text-primary">{{venda.venda_total_dia}}</td>
 
-                </tr>
+                        {% if venda.lucro_liquido_dia < 0 %}
+                            <td class="text-danger">{{venda.lucro_liquido_dia}}</td>
+                        {% else %}
+                            <td class="text-success">{{venda.lucro_liquido_dia}}</td>
+                        {% endif %}
+
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

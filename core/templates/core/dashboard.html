@@ -48,27 +48,32 @@
         <table class="table font-weight-bold">
             <thead class="thead">
                 <tr>
-                <th scope="col">Total de entregas</th>
-                <th scope="col" class="text-primary">Venda dinheiro</th>
-                <th scope="col" class="text-primary" data-toggle="tooltip" data-placement="top" title="Vendas no cartão -3% de taxa administrativa.">Venda cartão</th>
-                <th scope="col" class="text-primary">Soma dinheiro e cartão</th>
-                <th scope="col" class="text-danger">Despesa </th>
-                <th scope="col" class="text-danger">Compra </th>
-                <th scope="col" class="text-danger" data-toggle="tooltip" data-placement="top" title="Soma despesa + compra.">Despesa total</th>
-                <th scope="col" class="text-success" data-toggle="tooltip" data-placement="top" title="Soma dinheiro e cartão menos despesa total.">Lucro Liquido</th>
+                    <th scope="col">Total de entregas</th>
+                    <th scope="col" class="text-primary">Venda dinheiro</th>
+                    <th scope="col" class="text-primary" data-toggle="tooltip" data-placement="top" title="Vendas no cartão -3% de taxa administrativa.">Venda cartão</th>
+                    <th scope="col" class="text-primary">Soma dinheiro e cartão</th>
+                    <th scope="col" class="text-danger">Despesa </th>
+                    <th scope="col" class="text-danger">Compra </th>
+                    <th scope="col" class="text-danger" data-toggle="tooltip" data-placement="top" title="Soma despesa + compra.">Despesa total</th>
+                    <th scope="col" class="text-success" data-toggle="tooltip" data-placement="top" title="Soma dinheiro e cartão menos despesa total.">Lucro Liquido</th>
                 </tr>
             </thead>
             <tbody>
 
                 <tr>
-                <td>{{quantidade_entregas}}</td>
-                <td class="text-primary">{{venda_mensal_dinheiro}}</td>
-                <td class="text-primary">{{venda_mensal_cartao}}</td>
-                <td class="text-primary">{{soma_venda_dinheiro_cartao}}</td>
-                <td class="text-danger">{{despesa_mensal}}</td>
-                <td class="text-danger">{{compras_mensal}}</td>
-                <td class="text-danger">{{soma_despesa_total}}</td>
-                <td class="text-success">{{soma_mensal_lucro_liquido}}</td>
+                    <td>{{quantidade_entregas}}</td>
+                    <td class="text-primary">{{venda_mensal_dinheiro}}</td>
+                    <td class="text-primary">{{venda_mensal_cartao}}</td>
+                    <td class="text-primary">{{soma_venda_dinheiro_cartao}}</td>
+                    <td class="text-danger">{{despesa_mensal}}</td>
+                    <td class="text-danger">{{compras_mensal}}</td>
+                    <td class="text-danger">{{soma_despesa_total}}</td>
+
+                    {% if soma_mensal_lucro_liquido < 0 %}
+                        <td class="text-danger">{{soma_mensal_lucro_liquido}}</td>
+                    {% else %}
+                        <td class="text-success">{{soma_mensal_lucro_liquido}}</td>
+                    {% endif %}
                 </tr>
             </tbody>
         </table>
