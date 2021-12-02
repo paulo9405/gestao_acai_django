@@ -1,10 +1,11 @@
+from django.forms import model_to_dict
 from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Venda, Colaborador
 from django.urls import reverse_lazy
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template.loader import get_template
 import xhtml2pdf.pisa as pisa
 import io
@@ -129,3 +130,13 @@ class Vendas_csv(View):
                  ])
 
         return response
+
+
+def api(request):
+    lista_de_vendas = []
+    vendas = Venda.objects.all()
+
+    for venda in vendas:
+        lista_de_vendas.append(model_to_dict(venda))
+
+    return JsonResponse(lista_de_vendas, status=200, safe=False)

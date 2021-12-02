@@ -7,6 +7,7 @@ from .views import (
     ColaboradoresLista,
     Vendas_pdf,
     Vendas_csv,
+    api,
 )
 
 
@@ -25,7 +26,9 @@ urlpatterns = [
     path('vendas-pdf/', Vendas_pdf.as_view(),
         name='core_vendas_pdf'),
 
-path('vendas-csv/', Vendas_csv.as_view(),
+    path('vendas-csv/', Vendas_csv.as_view(),
         name='core_vendas_csv'),
+
+    path('api/', api, name="api"),
 
 ]
