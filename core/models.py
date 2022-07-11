@@ -45,16 +45,16 @@ class Venda(models.Model):
                 'liquido': self.lucro_liquido_dia,
                 }
 
-        plain_text = render_to_string('core/emails/nova_venda.txt', data)
-        html_email = render_to_string('core/emails/nova_venda.html', data)
-        send_mail(
-            'Nova venda cadastrada com sucesso',
-            plain_text,
-            'paulo.ricardo1137.pr@gmail.com',
-            ['paulo.ricardo1137.pr@gmail.com'],
-            html_message=html_email,
-            fail_silently=False,
-        )
+        # plain_text = render_to_string('core/emails/nova_venda.txt', data)
+        # html_email = render_to_string('core/emails/nova_venda.html', data)
+        # send_mail(
+        #     'Nova venda cadastrada com sucesso',
+        #     plain_text,
+        #     'paulo.ricardo1137.pr@gmail.com',
+        #     ['paulo.ricardo1137.pr@gmail.com'],
+        #     html_message=html_email,
+        #     fail_silently=False,
+        # )
 
         return super(Venda, self).save(*args, **kwargs)
 
