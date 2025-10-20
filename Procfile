@@ -1,1 +1,1 @@
-web: gunicorn gestao_acai.wsgi --log-file -
+web: gunicorn gestao_acai.wsgi:application --preload
