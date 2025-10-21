@@ -15,6 +15,21 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    # --- CRIA SUPERUSER AUTOMATICAMENTE NO DEPLOY (REMOVA DEPOIS) ---
+    import django
+    django.setup()
+    from django.contrib.auth import get_user_model
+
+    if os.environ.get("CREATE_SUPERUSER", "False") == "True":
+        User = get_user_model()
+        if not User.objects.filter(username="admin").exists():
+            print("⚙️ Criando superusuário admin automaticamente...")
+            User.objects.create_superuser(username="admin", password="123", email="")
+        else:
+            print("✅ Superusuário já existe.")
+
+    # Executa comandos normais do Django
     execute_from_command_line(sys.argv)
 
 
