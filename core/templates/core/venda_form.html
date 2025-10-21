@@ -47,16 +47,31 @@
 		<br>
 		{% csrf_token %}
 		<div class="form-row font-weight-bold text-info">
-			<div class="col-md-6 mb-3">
-				<label for="id_dia_da_venda" >Dia da venda ex: 01/12/2010</label>
-				<input type="text" name="dia_da_venda" class="form-control" id="validationDefault03" placeholder="Dia da venda" required>
-			</div>
-			
-			<div class="col-md-6 mb-3 font-weight-bold">
-				<label for="id_quantidade_entregas">Entregas</label>
-				<input type="text" name="quantidade_entregas" class="form-control" id="validationDefault03" placeholder="Entregas" required>
-			</div>
-		</div>
+    <div class="col-md-6 mb-3">
+        <label for="id_dia_da_venda">Dia da venda ex: dia/mes/ano</label>
+        
+        <!-- 🔹 Campo da data + botão "Usar data de hoje" -->
+        <div class="input-group">
+            <input type="date" 
+                   name="dia_da_venda" 
+                   class="form-control" 
+                   id="id_dia_da_venda" 
+                   placeholder="Dia da venda" 
+                   required>
+            <div class="input-group-append">
+                <button type="button" id="hoje-btn" class="btn btn-outline-secondary">
+                    Usar data de hoje
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-3 font-weight-bold">
+        <label for="id_quantidade_entregas">Entregas</label>
+        <input type="text" name="quantidade_entregas" class="form-control" id="id_quantidade_entregas" placeholder="Entregas" required>
+    </div>
+</div>
+
 		<div class="form-row text-info">
 			<div class="col-md-6 mb-3 font-weight-bold ">
 				<label for="id_venda_dinheiro">Venda Dinheiro</label>
@@ -91,4 +106,21 @@
 	</form>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btnHoje = document.getElementById('hoje-btn');
+  const campoData = document.getElementById('id_dia_da_venda');
+
+  btnHoje.addEventListener('click', () => {
+    const hoje = new Date();
+    const yyyy = hoje.getFullYear();
+    const mm = String(hoje.getMonth() + 1).padStart(2, '0');
+    const dd = String(hoje.getDate()).padStart(2, '0');
+    campoData.value = `${yyyy}-${mm}-${dd}`;
+  });
+});
+</script>
+
+
 {% endblock  %}
