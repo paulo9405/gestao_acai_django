@@ -11,16 +11,18 @@ def main():
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
+            "Couldn't import Django..."
         ) from exc
 
-    # --- CRIA SUPERUSER AUTOMATICAMENTE NO DEPLOY (REMOVA DEPOIS) ---
+    # --- APLICA MIGRAÇÕES AUTOMATICAMENTE NO DEPLOY ---
     import django
     django.setup()
-    from django.contrib.auth import get_user_model
+    from django.core.management import call_command
+    print("🚀 Aplicando migrações...")
+    call_command('migrate', interactive=False)
 
+    # --- CRIA SUPERUSER AUTOMATICAMENTE (SE VARIÁVEL SETADA) ---
+    from django.contrib.auth import get_user_model
     if os.environ.get("CREATE_SUPERUSER", "False") == "True":
         User = get_user_model()
         if not User.objects.filter(username="admin").exists():
@@ -29,7 +31,6 @@ def main():
         else:
             print("✅ Superusuário já existe.")
 
-    # Executa comandos normais do Django
     execute_from_command_line(sys.argv)
 
 
