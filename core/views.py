@@ -11,6 +11,8 @@ import xhtml2pdf.pisa as pisa
 import io
 from django.shortcuts import render
 import csv
+from django.contrib import messages
+
 
 
 
@@ -35,18 +37,21 @@ class DashboardView(View):
 class VendaCreate(CreateView):
     model = Venda
     fields = [
-            'dia_da_venda',
-            'quantidade_entregas',
-            'venda_dinheiro',
-            'venda_cartao',
-            'compras',
-            'descricao_compras',
-            'despesas',
-            'descricao_despesas',
-        ]
-    #TODO: reverse lazy esta dando erro(Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name), corrigir futuramenbte
-    success_url = '/core/venda_list'
-    #success_url = reverse_lazy('venda_list')
+        'dia_da_venda',
+        'quantidade_entregas',
+        'venda_dinheiro',
+        'venda_cartao',
+        'compras',
+        'descricao_compras',
+        'despesas',
+        'descricao_despesas',
+    ]
+    success_url = reverse_lazy('core_venda_lista')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "✅ Venda criada com sucesso!")
+        return response
 
 
 @method_decorator(login_required, name='dispatch')

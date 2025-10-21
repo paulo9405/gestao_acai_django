@@ -2,6 +2,7 @@
 {% load bootstrap %}
 
 <link rel="stylesheet" href="style.css">
+
 {% block menu %}
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -18,11 +19,11 @@
 
         {% if user.is_authenticated %}
             <li class="nav-item">
-                    <a class="nav-link disabled" href="">Ola, {{ user }}</a>
+                <a class="nav-link disabled" href="">Ola, {{ user }}</a>
             </li>
 
             <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                <a class="nav-link" href="{% url 'logout' %}">Sair</a>
             </li>
         {% else %}
             <li class="nav-item">
@@ -34,10 +35,83 @@
 
 {% block main %}
 
+<!-- =============================== -->
+<!-- 🔔 Toast de mensagem animada -->
+<!-- =============================== -->
+{% if messages %}
+  {% for message in messages %}
+    <div id="toast" class="toast bg-success text-white shadow-lg">
+      <div class="toast-body">
+        {{ message }}
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
+
+<!-- =============================== -->
+<!-- CSS atualizado com animação real -->
+<!-- =============================== -->
+<style>
+  #toast {
+    position: fixed;
+    top: -100px; /* começa fora da tela */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    min-width: 300px;
+    background-color: #28a745;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    transition: top 0.8s ease, opacity 0.8s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  #toast.show {
+    top: 25px; /* desce suavemente */
+    opacity: 1;
+  }
+
+  #toast.hide {
+    top: -120px; /* sobe suavemente */
+    opacity: 0;
+  }
+
+  .toast-body {
+    padding: 15px 20px;
+  }
+</style>
+
+<!-- =============================== -->
+<!-- JS ajustado para respeitar animação -->
+<!-- =============================== -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toast = document.getElementById('toast');
+    if (toast) {
+      // Fase 1: aparece suavemente
+      setTimeout(() => toast.classList.add('show'), 50);
+
+      // Fase 2: após 4s, inicia a subida (desaparecimento)
+      setTimeout(() => toast.classList.remove('show'), 4000);
+      setTimeout(() => toast.classList.add('hide'), 4100);
+
+      // Fase 3: remove só depois da animação terminar (1s depois)
+      setTimeout(() => toast.remove(), 5200);
+    }
+  });
+</script>
+
+
+<!-- =============================== -->
+<!-- Conteúdo principal da página -->
+<!-- =============================== -->
 <div class="row">
     <div class="col-12">
         <br>
         <div class=" row col-12 font-weight-bold text-uppercase p-3 mb-2 bg-info text-white">
+            
             <div class="col-6 text-center">
                 <h2> Vendas Diarias </h2>
             </div>
@@ -66,7 +140,7 @@
                     <tr>
                         <th scope="row">{{venda.id}}</th>
                         <td class="text-warning">{{venda.dia_da_venda}}</td>
-                        <td >{{venda.quantidade_entregas}}</td>
+                        <td>{{venda.quantidade_entregas}}</td>
                         <td class="text-primary">{{venda.venda_dinheiro}}</td>
                         <td class="text-primary">{{venda.venda_cartao}}</td>
                         <td class="text-danger">{{venda.compras}}</td>
@@ -79,7 +153,6 @@
                         {% else %}
                             <td class="text-success">{{venda.lucro_liquido_dia}}</td>
                         {% endif %}
-
                     </tr>
                 {% endfor %}
             </tbody>
@@ -88,4 +161,4 @@
         <a class="btn btn-success" href="{% url 'core_vendas_csv' %}">Imprimir CSV das vendas</a>
     </div>
 </div>
-{% endblock  %}
+{% endblock %}
