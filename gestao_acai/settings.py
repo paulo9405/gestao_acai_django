@@ -73,10 +73,8 @@ WSGI_APPLICATION = 'gestao_acai.wsgi.application'
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', default=f"sqlite:///{os.path.join(os.path.dirname(os.path.dirname(__file__)), 'db.sqlite3')}"),
-        conn_max_age=600,
-        ssl_require=False,   # Render já gerencia SSL na camada HTTP
+    'default': dj_database_url.parse(
+        os.getenv('DATABASE_URL', 'postgresql://acai_user:KKiRaWuXSzjj3Ctk9AR7NmaNneErZ0mv@dpg-d3t6gdhbh1hs73a85bag-a.virginia-postgres.render.com/acai_db')
     )
 }
 
