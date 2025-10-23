@@ -133,13 +133,19 @@
                 <th scope="col" class="text-danger">Total Despesa do dia</th>
                 <th scope="col" class="text-primary">Venda dinheiro e cartão</th>
                 <th scope="col" class="text-success">Venda Liquida</th>
+                
                 </tr>
             </thead>
             <tbody>
                 {% for venda in object_list %}
                     <tr>
                         <th scope="row">{{venda.id}}</th>
-                        <td class="text-warning">{{venda.dia_da_venda}}</td>
+
+                        <td class="text-warning">
+                          {{ venda.dia_da_venda }} <br>
+                          <small class="text-muted">{{ venda.hora_venda_criada|date:"H:i" }}</small>
+                        </td>
+
                         <td>{{venda.quantidade_entregas}}</td>
                         <td class="text-primary">{{venda.venda_dinheiro}}</td>
                         <td class="text-primary">{{venda.venda_cartao}}</td>

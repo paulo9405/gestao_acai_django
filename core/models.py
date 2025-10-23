@@ -15,6 +15,7 @@ class Venda(models.Model):
     descricao_compras = models.CharField(max_length=200, null=True, blank=True)
     despesas = models.DecimalField(max_digits=7, decimal_places=2)
     descricao_despesas = models.CharField(max_length=200, null=True, blank=True)
+    hora_venda_criada = models.DateTimeField(auto_now_add=True)
 
     venda_total_dia = models.DecimalField(blank=True, default=0, max_digits=7, decimal_places=2)
     despesa_do_dia = models.DecimalField(blank=True, default=0, max_digits=7, decimal_places=2)
@@ -45,32 +46,7 @@ class Venda(models.Model):
                 'liquido': self.lucro_liquido_dia,
                 }
 
-        # plain_text = render_to_string('core/emails/nova_venda.txt', data)
-        # html_email = render_to_string('core/emails/nova_venda.html', data)
-        # send_mail(
-        #     'Nova venda cadastrada com sucesso',
-        #     plain_text,
-        #     'paulo.ricardo1137.pr@gmail.com',
-        #     ['paulo.ricardo1137.pr@gmail.com'],
-        #     html_message=html_email,
-        #     fail_silently=False,
-        # )
-
         return super(Venda, self).save(*args, **kwargs)
-
-    # @receiver(post_save)
-    # def envia_email(sender, instance, **kwargs):
-    #     data = {'dia': instance}
-    #     plain_text = render_to_string('core/emails/nova_venda.txt', data)
-    #     html_email = render_to_string('core/emails/nova_venda.html', data)
-    #     send_mail(
-    #         'Nova venda cadastrada com sucesso',
-    #         plain_text,
-    #         'paulo.ricardo1137.pr@gmail.com',
-    #         ['paulo.ricardo1137.pr@gmail.com'],
-    #         html_message=html_email,
-    #         fail_silently=False,
-    #     )
 
 
 class Colaborador(models.Model):

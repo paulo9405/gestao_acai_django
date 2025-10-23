@@ -16,6 +16,7 @@ from django.contrib import messages
 
 
 
+
 @method_decorator(login_required, name='dispatch')
 class DashboardView(View):
     def get(self, request):
