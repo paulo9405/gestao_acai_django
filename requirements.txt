@@ -4,7 +4,7 @@ beautifulsoup4==4.9.3
 certifi==2025.10.5
 cffi==2.0.0
 charset-normalizer==3.4.4
-cryptography==43.0.3
+cryptography==46.0.3
 defusedxml==0.7.1
 dj-database-url==0.5.0
 dj-static==0.0.6
@@ -19,6 +19,7 @@ html5lib==1.1
 idna==3.11
 oauthlib==3.3.1
 Pillow==8.4.0
+psycopg2-binary==2.9.11
 pycparser==2.23
 PyJWT==2.10.1
 PyPDF2==1.26.0
@@ -38,5 +39,3 @@ urllib3==2.5.0
 webencodings==0.5.1
 whitenoise==6.11.0
 xhtml2pdf==0.2.5
-gunicorn
-
