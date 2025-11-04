@@ -13,9 +13,10 @@ SECRET_KEY = config('SECRET_KEY', default='unsafe-dev-key')  # Render vai defini
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.fly.dev', '.internal', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
+
 
 # ADMINS = [('Paulo', 'paulo.ricardo1137.pr@gmail.com')]
 
@@ -72,11 +73,12 @@ WSGI_APPLICATION = 'gestao_acai.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
+DATABASE_URL = config('DATABASE_URL', default=f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}')
+
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.getenv('DATABASE_URL', 'postgresql://acai_user:KKiRaWuXSzjj3Ctk9AR7NmaNneErZ0mv@dpg-d3t6gdhbh1hs73a85bag-a.virginia-postgres.render.com/acai_db')
-    )
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=False)
 }
+
 
 
 
@@ -138,11 +140,3 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'core_dashboard'
 LOGOUT_REDIRECT_URL = 'core_dashboard'
 
-# essa config é para gmail, para outros provedores de email pode ser diferente.
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
